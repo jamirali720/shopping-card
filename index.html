@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default"><i id="decreaseSign" class="fas fa-minus"></i></button>
+                           <input id="mobileQuantity" type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i id="increaseSign" class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="currentMobilePrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default"><i id="secondDecreaseSign" class="fas fa-minus"></i></button>
+                           <input id="coverQuantity" type="text" class="form-control text-center" value="1">
+                           <button class="btn btn-default"><i id="secondIncreaseSign" class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="mobileCoverFixedPrice">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subTotalPrice">1278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$ <span id="grandTotalPrice">1278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+   
+   <script>
+      //  upper part plusSign 
+     
+
+      const increasePlus = document.querySelector("#increaseSign");
+      increasePlus.addEventListener("click", function(){
+         const  quantity = document.querySelector("#mobileQuantity").value;
+         const quantityNumber = parseFloat(quantity);
+         let mobileDefaultQuantity = 1;
+         const quantityNumberAmount = quantityNumber + mobileDefaultQuantity;
+         document.querySelector("#mobileQuantity").value = quantityNumberAmount;
+
+         
+         
+         const mobileBalance = document.querySelector("#currentMobilePrice").innerText;
+         const MobilePrice = parseFloat(mobileBalance);
+         let mobileFixedPrice = 1219;
+         const totalMobilePrice = MobilePrice + mobileFixedPrice;
+         document.querySelector("#currentMobilePrice").innerText = totalMobilePrice;
+
+            const total = document.querySelector("#subTotalPrice").innerText;
+            const totalNumber = parseFloat(total);
+            const subTotalAmount = totalNumber + mobileFixedPrice;
+            document.querySelector("#subTotalPrice").innerText = subTotalAmount;
+
+            const grandTotal = document.querySelector("#grandTotalPrice").innerText;
+            const grandTotalNumber = parseFloat(grandTotal);        
+            const grandTotalPrice = grandTotalNumber + mobileFixedPrice;
+            document.querySelector("#grandTotalPrice").innerText = grandTotalPrice;
+      })
+
+      // upper part minusSign
+
+         const decreaseSign = document.querySelector("#decreaseSign");
+         decreaseSign.addEventListener("click", function(){
+           const Quantity = document.querySelector("#mobileQuantity").value;
+           const quantityNumber = parseFloat(Quantity);
+           let mobileDefaultQuantity = 1;
+           const mobileQuantityAmount = quantityNumber - mobileDefaultQuantity;
+           document.querySelector("#mobileQuantity").value = mobileQuantityAmount;
+
+           
+            const mobileBalance = document.querySelector("#currentMobilePrice").innerText;
+            const MobilePrice = parseFloat(mobileBalance);
+            let mobileFixedPrice = 1219;
+            const totalMobilePrice = MobilePrice - mobileFixedPrice;
+            document.querySelector("#currentMobilePrice").innerText = totalMobilePrice;
+
+            
+            const total = document.querySelector("#subTotalPrice").innerText;
+            const totalNumber = parseFloat(total);
+            const subTotalAmount = totalNumber - mobileFixedPrice;
+            document.querySelector("#subTotalPrice").innerText = subTotalAmount;
+
+            const grandTotal = document.querySelector("#grandTotalPrice").innerText;
+            const grandTotalNumber = parseFloat(grandTotal);        
+            const grandTotalPrice = grandTotalNumber - mobileFixedPrice;
+            document.querySelector("#grandTotalPrice").innerText = grandTotalPrice;
+
+         })
+
+          // middle part plusSign
+         const secondIncreaseSign = document.querySelector("#secondIncreaseSign");
+         secondIncreaseSign.addEventListener("click", function(){
+            const mobileCoverPrice = document.querySelector("#mobileCoverFixedPrice").innerText;
+            const mobileCoverFixedPrice = parseFloat(mobileCoverPrice);
+            let mobileCoverDefaultPrice = 59;
+            const mobileCoverAmount = mobileCoverFixedPrice + mobileCoverDefaultPrice;
+            document.querySelector("#mobileCoverFixedPrice").innerText = mobileCoverAmount;
+
+            const coverQuantity = document.querySelector("#coverQuantity").value;
+            const coverQuantityNumber = parseFloat(coverQuantity);
+            let coverDefaultQuantity = 1;
+            const coverQuantityAmount = coverQuantityNumber + coverDefaultQuantity;
+            document.querySelector("#coverQuantity").value = coverQuantityAmount;
+            
+            const total = document.querySelector("#subTotalPrice").innerText;
+            const totalNumber = parseFloat(total);
+            const subTotalAmount = totalNumber + mobileCoverFixedPrice;
+            document.querySelector("#subTotalPrice").innerText = subTotalAmount;
+
+            const grandTotal = document.querySelector("#grandTotalPrice").innerText;
+            const grandTotalNumber = parseFloat(grandTotal);        
+            const grandTotalPrice = grandTotalNumber + mobileCoverFixedPrice;
+            document.querySelector("#grandTotalPrice").innerText = grandTotalPrice;
+
+         })
+
+         // middle part minus sign
+         const secondDecreaseSign = document.querySelector("#secondDecreaseSign");
+         secondDecreaseSign.addEventListener("click", function(){
+            const mobileCoverPrice = document.querySelector("#mobileCoverFixedPrice").innerText;
+            const mobileCoverFixedPrice = parseFloat(mobileCoverPrice);
+            let mobileCoverDefaultPrice = 59;
+            const mobileCoverAmount = mobileCoverFixedPrice - mobileCoverDefaultPrice;
+            document.querySelector("#mobileCoverFixedPrice").innerText = mobileCoverAmount;
+
+            const coverQuantity = document.querySelector("#coverQuantity").value;
+            const coverQuantityNumber = parseFloat(coverQuantity);
+            let coverDefaultQuantity = 1;
+            const coverQuantityAmount = coverQuantityNumber - coverDefaultQuantity;
+            document.querySelector("#coverQuantity").value = coverQuantityAmount;
+            
+            const total = document.querySelector("#subTotalPrice").innerText;
+            const totalNumber = parseFloat(total);
+            const subTotalAmount = totalNumber - mobileCoverFixedPrice;
+            document.querySelector("#subTotalPrice").innerText = subTotalAmount;
+
+            const grandTotal = document.querySelector("#grandTotalPrice").innerText;
+            const grandTotalNumber = parseFloat(grandTotal);        
+            const grandTotalPrice = grandTotalNumber - mobileCoverFixedPrice;
+            document.querySelector("#grandTotalPrice").innerText = grandTotalPrice;
+
+
+
+         })
+
+     
+
+   </script>
+</body>
+
+</html>
